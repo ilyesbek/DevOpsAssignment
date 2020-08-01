@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Book {
     private ArrayList<String> authors;
@@ -10,12 +9,10 @@ public class Book {
     //Constructor
     public Book(String title, String publisher, int publicationYear)
     {
-
         this.title = title;
         this.publisher = publisher;
         this.publicationYear = publicationYear;
         this.authors = new ArrayList<String>();
-
     }
 
     //Constructor that takes default parameters
@@ -37,7 +34,6 @@ public class Book {
         return authors;
     }
 
-
     public String getPublisher() {
         return publisher;
     }
@@ -58,6 +54,7 @@ public class Book {
         this.publicationYear = publicationYear;
     }
 
+    //Method to display the books with information
     public void display() {
         System.out.println("Book: ");
         for(String author : authors){

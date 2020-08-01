@@ -12,10 +12,9 @@ public class Library {
     //Constructor
     public Library(String input) {
         this.booksList = new ArrayList<>(readBooks(input));
-
     }
 
-    //
+    //1st method for reading the books
     private List<Book> readBooks(String input) throws ArrayIndexOutOfBoundsException {
         ArrayList<Book> booksList = new ArrayList<>();
 
@@ -29,18 +28,20 @@ public class Library {
                 book = new Book();
 
             } else if (line.trim().equals("")){
+                                        /*An empty line is the end of the book*/
                 booksList.add(book); /* Creating the book and adding fields, if we arrive into an empty line, we add
                                        the book and set it to null and we wait for the next one*/
                 book = null;
             }else if (book != null){
-               String value = line.split(":")[1].trim(); //removes the spaces that are before and after the string
+               String value = line.split(":")[1].trim(); /*trim() is used for removing the spaces that are before and after the string*/
 
+                //Adding information of the book
             if(line.startsWith("Title")){ book.setTitle(value);}
             if(line.startsWith("Author")){ book.addAuthor(value);}
             if(line.startsWith("Publisher")){ book.setPublisher(value);}
             if(line.startsWith("Published")){ book.setPublicationYear(Integer.parseInt(value));}
             } else {
-                System.err.println("Error : Bad input format");
+                System.err.println("Error : Bad input format"); //Error if the format of the file is wrong
             }
 
         }
@@ -53,18 +54,18 @@ public class Library {
         return booksList;
     }
 
+    //Calling the displayBooks() method
     public void displayBooks(){
         for (Book book : booksList) {
             book.display();
         }
     }
 
-    // 2nd Method
+    // 2nd Method for searching books
     private List<Book> findBooks(String searchString) {
         ArrayList<Book> foundBook = new ArrayList<>();
 
         String[] conditions = searchString.split(" & ");
-
 
         for (Book book : this.booksList) {
 
@@ -89,7 +90,7 @@ public class Library {
                     satisfyAllConditions=false;
                     break;
                 }
-
+                //If we satisfy all the conditions, we add the books
             }  if (satisfyAllConditions){
                 foundBook.add(book);
 
@@ -119,7 +120,7 @@ public class Library {
 
         try {
 
-            String input = Library.readInput("C:/Users/Ilyes-B/Desktop/DevOpsAssignment/Book.txt");
+            String input = Library.readInput("Insert file path here");
 
             library = new Library(input);
 
